@@ -5,13 +5,13 @@ FROM python:3.11.2
 WORKDIR /app
 
 # Copy the requirements file to the container and install the Python dependencies
-COPY requirements.txt .
+COPY requirements.txt ./flask
 
 # Install the Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code to the container
-COPY . .
+COPY ./flask .
 
 # Expose the port that your Flask application will be running on (change 5000 to the appropriate port if needed)
 EXPOSE 5000
