@@ -11,7 +11,7 @@ pipeline {
         stage('Github') {
             steps {
                 git (
-                    url: 'https://github.com/serkancakar/Spring-App.git',
+                    url: 'https://github.com/caglayildiz2/flask.git,
                     branch: 'main'
                     )
             }
@@ -21,9 +21,9 @@ pipeline {
           steps {
             script {
               docker.withRegistry("$REGISTRY", "$HARBOR") {
-                def app = docker.build("harbor.tmc.datamarket.local/app/flask:${env.BUILD_NUMBER}")
+                def app = docker.build("harbor.tmc.datamarket.local/flask/flask:${env.BUILD_NUMBER}")
                 app.push()
-              //  sh 'docker image rm harbor.datamarket.local:9443/app/spring-app:${env.BUILD_ID}'
+              //  sh 'docker image rm harbor.datamarket.local/app/spring-app:${env.BUILD_ID}'
              }
           }
         }
