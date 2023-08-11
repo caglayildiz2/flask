@@ -21,7 +21,7 @@ pipeline {
           steps {
             script {
               docker.withRegistry("$REGISTRY", "$HARBOR") {
-                def app = docker.build("harbor.tmc.datamarket.local/flask/flask:${env.BUILD_NUMBER}")
+                def app = docker.build("harbor.tmc.datamarket.local/flask/flask")
                 app.push()
               //  sh 'docker image rm harbor.datamarket.local/app/spring-app:${env.BUILD_ID}'
              }
@@ -33,7 +33,7 @@ pipeline {
         stage('Trigger ManifestUpdate') {
           steps {
                    echo "triggering updatemanifestjob"
-                  // build job: 'updatemanifest' /* parameters: [string(name: 'DOCKERTAG', value: '${env.BUILD_ID}')] */
+                   build job: 'updatemanifest' /* parameters: [string(name: 'DOCKERTAG', value: '${env.BUILD_ID}')] */
                 }
                }
     }
