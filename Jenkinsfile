@@ -11,7 +11,7 @@ pipeline {
         stage('Github') {
             steps {
                 git (
-                    url: 'https://github.com/caglayildiz2/flask.git,
+                    url: 'https://github.com/caglayildiz2/flask.git',
                     branch: 'main'
                     )
             }
